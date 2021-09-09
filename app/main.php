@@ -1,30 +1,43 @@
 <?php
-    class Stack {
-        public $elements = [];
+    require_once ('queue.php');
 
-        public function __construct(int ...$element) {
-            $this->elements = array_merge($this->elements, $element);
-        }
+    /**
+     * s1 = [2, 1]
+     * s2 = []
+     * 
+     * s1 = [1]
+     * s2 = [2]
+     * 
+     * s1 = []
+     * s2 = [1, 2]
+     */
 
-        public function put(int $element): void
-        {
-            $this->elements = array_merge([$element], $this->elements);
-        }
+    $queue = new Queue();
 
-        public function unstack(): int
-        {
-            return array_shift($this->elements);
-        }
-
-        public function isEmpty(): bool
-        {
-            return empty($this->elements);
-        }
+    for ($i = 1; $i <= 5; $i++) {
+        $queue->queue($i);
     }
 
-    $stack1 = new Stack(1, 2);
-    $stack1->put(3);
-    $stack1->put(5);
 
-    var_dump($stack1->unstack(), $stack1->unstack(), $stack1->elements);
+    var_dump($queue->stack_1);
+
+    echo "<br />";
+
+    var_dump($queue->get());
+    var_dump($queue->get());
+    var_dump($queue->get());
+
+    for ($i = 10; $i <= 15; $i++) {
+        $queue->queue($i);
+    }
+
+    echo "<br />";
+
+    var_dump($queue->get());
+    var_dump($queue->get());
+    var_dump($queue->get());
+
+    echo "<br />";
+
+    var_dump($queue->stack_2);
     die;
