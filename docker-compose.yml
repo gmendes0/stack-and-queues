@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    image: php:8.0-apache-buster
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - 80:80
+    tty: true
+    stdin_open: true
